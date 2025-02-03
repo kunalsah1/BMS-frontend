@@ -1,20 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "../../Containers/TextField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { loginUser } from "../../authentication/apis";
 // import { setItemInSessionStorage } from "../../utils/sessionStorage";
-import { setItemInLocalStorage } from "../../utils/localStorage";
+import {
+  getItemInLocalStorage,
+  setItemInLocalStorage,
+} from "../../utils/localStorage";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = getItemInLocalStorage("accessToken");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const navigate = useNavigate();
+
   const handleLogin = async () => {
     if (!formData.email && !formData.password) {
       return toast.error("Please provide credentials");
@@ -29,6 +39,10 @@ const Login = () => {
       setItemInLocalStorage("userId", userId);
       setItemInLocalStorage("accessToken", tokens.access);
       setItemInLocalStorage("refreshToken", tokens.refresh);
+      setItemInLocalStorage("FIRSTNAME", res.data.first_name);
+      setItemInLocalStorage("LASTNAME", res.data.last_name);
+      setItemInLocalStorage("EMAIL", res.data.email);
+      setItemInLocalStorage("MOBILE", res.data.mobile_number);
       // setItemInSessionStorage("accessToken", tokens.access);
       // setItemInSessionStorage("refreshToken", tokens.refresh);
       console.log(res);
