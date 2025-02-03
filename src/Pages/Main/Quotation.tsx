@@ -29,6 +29,7 @@ const Quotation = () => {
   }, []);
   const handleDownloadQuotationPdf = async (
     quoteId: number,
+
     client_name: string,
     date: string
   ) => {
