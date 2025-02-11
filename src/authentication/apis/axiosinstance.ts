@@ -2,7 +2,7 @@ import axios from "axios";
 import { getItemInLocalStorage } from "../../utils/localStorage";
 
 const axiosInstance = axios.create({
-  baseURL: "http://15.206.216.87",
+  baseURL: "https://15.206.216.87",
   // baseURL: "http://127.0.0.1:8000",
 });
 
