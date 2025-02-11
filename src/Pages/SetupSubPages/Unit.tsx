@@ -10,6 +10,7 @@ import AddUnit from "../Modals/AddUnits";
 interface Company {
   name: string;
   created_at: string;
+  abbreviation: string;
 }
 const Unit = () => {
   const [units, setUnits] = useState([]);
@@ -30,6 +31,11 @@ const Unit = () => {
     {
       name: "Unit",
       selector: (row) => row.name,
+      sortable: true,
+    },
+    {
+      name: "Abbreviation",
+      selector: (row) => (row.abbreviation ? row.abbreviation : "-"),
       sortable: true,
     },
     {
