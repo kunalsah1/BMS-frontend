@@ -13,6 +13,7 @@ interface unitPros {
 const AddUnit = ({ isModalOpen, setIsModalOpen, fetchUnits }: unitPros) => {
   const [formData, setFormData] = useState({
     name: "",
+    abbreviation: "",
   });
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,6 +25,7 @@ const AddUnit = ({ isModalOpen, setIsModalOpen, fetchUnits }: unitPros) => {
     }
     const sendData = new FormData();
     sendData.append("name", formData.name);
+    sendData.append("abbreviation", formData.abbreviation);
     sendData.append("user", userId);
     try {
       await postUnits(sendData);
@@ -48,6 +50,13 @@ const AddUnit = ({ isModalOpen, setIsModalOpen, fetchUnits }: unitPros) => {
             placeholder="Enter unit"
             value={formData.name}
             name="name"
+            onChange={handleChange}
+          />
+          <TextField
+            label="Abbreviation"
+            placeholder="NOS"
+            value={formData.abbreviation}
+            name="abbreviation"
             onChange={handleChange}
           />
         </div>
