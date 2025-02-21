@@ -1,4 +1,5 @@
 import axiosInstance from "./axiosinstance";
+import nodeInstance from "./nodeInstange";
 
 export const registerUser = async (data: any) =>
   axiosInstance.post("/register/", data);
@@ -28,3 +29,9 @@ export const downloadQuotationPdf = async (quotationId: number) =>
   axiosInstance.get(`/download-quotation-pdf/${quotationId}/`);
 export const getUnits = async () => axiosInstance.get(`unit/`);
 export const postUnits = async (data: any) => axiosInstance.post(`unit/`, data);
+
+export const getQuotationCount = async () =>
+  nodeInstance.get("/dashboard/quotation-count");
+
+export const getQuotationAmount = async () =>
+  nodeInstance.get("/dashboard/amount");

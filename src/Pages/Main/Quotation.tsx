@@ -13,6 +13,7 @@ interface Company {
   client_name: string;
   id: number;
   total_amount: number;
+  bill_or_quotation: string;
 }
 const Quotation = () => {
   const [quotations, setQuotations] = useState([]);
@@ -64,6 +65,11 @@ const Quotation = () => {
     {
       name: "Client",
       selector: (row) => row.client_name,
+      sortable: true,
+    },
+    {
+      name: "Type",
+      selector: (row) => row.bill_or_quotation,
       sortable: true,
     },
     {
