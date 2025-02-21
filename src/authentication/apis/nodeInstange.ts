@@ -2,12 +2,12 @@ import axios from "axios";
 import { getItemInLocalStorage } from "../../utils/localStorage";
 import toast from "react-hot-toast";
 
-const axiosInstance = axios.create({
+const nodeInstance = axios.create({
   // baseURL: "https://15.206.216.87",
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "http://127.0.0.1:5000",
 });
 
-axiosInstance.interceptors.request.use(
+nodeInstance.interceptors.request.use(
   (config) => {
     const token = getItemInLocalStorage("accessToken");
     if (
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-axiosInstance.interceptors.response.use(
+nodeInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -49,4 +49,4 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export default axiosInstance;
+export default nodeInstance;
